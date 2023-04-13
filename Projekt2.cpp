@@ -54,8 +54,11 @@ void DFS(int n)
 int main()
 {
     //przeszukaj graf
-    std::packaged_task<void(int)> tsk(DFS);
-    std::thread test(std::move(tsk),1);
-    test.join();
+    while (1)
+    {
+        std::packaged_task<void(int)> tsk(DFS);
+        std::thread test(std::move(tsk), 1);
+        test.join();
+    }
     return 0;
 }

@@ -12,17 +12,17 @@ struct graf {
 
 void DFS(int n)
 {
-    cout << "Podaj liczbe wierzcholkow w grafie: ";
+    cout << "Podaj liczbe wierzcholkow w grafie: " << endl;
     int p, a, b;
     cin >> n;
     w = new graf[n + 1];//przydzielenie pamięci na wierzchołki grafu
     //wczytanie wierzchołków grafu
-    cout << "Podaj liczbe polaczen: ";
+    cout << "Podaj liczbe polaczen: " << endl;
     cin >> p;
 
     for (int i = 0; i < p; i++)
     {
-        cout << "Podaj numery wierzcholkow, ktore chcesz ze soba polaczyc: ";
+        cout << "Podaj numery wierzcholkow, ktore chcesz ze soba polaczyc: " << endl;
         cin >> a >> b;
         w[a].polaczenia.push_back(b); //połączenie jest dwukierunkowe a-->b
         w[b].polaczenia.push_back(a); //b-->a
@@ -35,7 +35,7 @@ void DFS(int n)
         n = stos.top(); //pobranie elementu ze stosu
 
         stos.pop(); //usuń pobrany element ze stosu
-        cout << "Odwiedzono wierzcholek o numerze: " << n << endl;; //odwiedź go i zrób coś
+        cout << "Odwiedzono wierzcholek o numerze: " << n << endl; //odwiedź go i zrób coś
 
         for (int i = 0; i < w[n].polaczenia.size(); i++)
             if (!w[w[n].polaczenia[i]].stos)

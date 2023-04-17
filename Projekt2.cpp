@@ -6,8 +6,8 @@
 using namespace std;
 
 struct graf {
-    bool stos = 0; //czy dodany na stos
-    vector <int> polaczenia; //do przechowywania połączeń
+    bool stos = 0;
+    vector <int> polaczenia;
 }*w;
 
 void DFS(int n)
@@ -15,8 +15,7 @@ void DFS(int n)
     cout << "Podaj liczbe wierzcholkow w grafie: " << endl;
     int p, a, b;
     cin >> n;
-    w = new graf[n + 1];//przydzielenie pamięci na wierzchołki grafu
-    //wczytanie wierzchołków grafu
+    w = new graf[n + 1];
     cout << "Podaj liczbe polaczen: " << endl;
     cin >> p;
 
@@ -24,18 +23,18 @@ void DFS(int n)
     {
         cout << "Podaj numery wierzcholkow, ktore chcesz ze soba polaczyc: " << endl;
         cin >> a >> b;
-        w[a].polaczenia.push_back(b); //połączenie jest dwukierunkowe a-->b
-        w[b].polaczenia.push_back(a); //b-->a
+        w[a].polaczenia.push_back(b); 
+        w[b].polaczenia.push_back(a); 
     }
     n = 1;
-    stack<int> stos;    //utworzenie stosu 
-    stos.push(n);  //dodanie pierwszego wierzcholka na stos
-    while (!stos.empty()) //dopóki jest cos na stosie
+    stack<int> stos; 
+    stos.push(n);
+    while (!stos.empty())
     {
-        n = stos.top(); //pobranie elementu ze stosu
+        n = stos.top();
 
-        stos.pop(); //usuń pobrany element ze stosu
-        cout << "Odwiedzono wierzcholek o numerze: " << n << endl; //odwiedź go i zrób coś
+        stos.pop();
+        cout << "Odwiedzono wierzcholek o numerze: " << n << endl;
 
         for (int i = 0; i < w[n].polaczenia.size(); i++)
             if (!w[w[n].polaczenia[i]].stos)
@@ -43,7 +42,7 @@ void DFS(int n)
                 if (w[n].polaczenia[i] != 1)
                 {
                     stos.push(w[n].polaczenia[i]);
-                    w[w[n].polaczenia[i]].stos = 1; //oznaczenie, że dodano na stos
+                    w[w[n].polaczenia[i]].stos = 1;
                     cout << "Dodano na stos wierzcholek nr " << w[n].polaczenia[i] << endl;
                 }
             }
@@ -53,7 +52,6 @@ void DFS(int n)
 
 int main()
 {
-    //przeszukaj graf
     while (1)
     {
         std::packaged_task<void(int)> tsk(DFS);
